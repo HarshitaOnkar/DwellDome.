@@ -1,0 +1,1359 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features — DwellDome</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --cream: #f4ead8;
+            --cream-light: #f8f0e3;
+            --burgundy: #672731;
+            --burgundy-dark: #4d1b24;
+            --rose: #c98f82;
+            --brown: #5b4942;
+            --dark: #281e1d;
+            --muted: #766763;
+            --border: rgba(74, 48, 43, 0.18);
+            --serif: "Playfair Display", Georgia, serif;
+            --sans: "DM Sans", Arial, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 76px;
+        }
+
+        body {
+            width: 100%;
+            min-height: 100vh;
+            background: var(--cream);
+            color: var(--dark);
+            font-family: var(--sans);
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* NAVBAR — matches homepage */
+
+        .navbar {
+            width: 100%;
+            height: 66px;
+            padding: 0 4.8vw;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: var(--cream);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            flex-shrink: 0;
+        }
+
+        .brand-icon {
+            width: 22px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--burgundy);
+        }
+
+        .brand-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .brand-name {
+            font-family: var(--serif);
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: -0.4px;
+            color: var(--burgundy);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 34px;
+            margin-left: 80px;
+        }
+
+        .nav-links a {
+            font-size: 11px;
+            color: var(--brown);
+            transition: color .2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--burgundy);
+        }
+
+        .nav-links a.active {
+            position: relative;
+        }
+
+        .nav-links a.active::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -9px;
+            height: 1px;
+            background: var(--burgundy);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            flex-shrink: 0;
+        }
+
+        .signup,
+        .nav-button {
+            min-height: 36px;
+            padding: 10px 19px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--burgundy);
+            color: #fff8ef;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 500;
+            white-space: nowrap;
+            transition: transform .2s ease, background .2s ease;
+        }
+
+        .nav-button {
+            padding-left: 21px;
+            padding-right: 21px;
+        }
+
+        .signup:hover,
+        .nav-button:hover {
+            transform: translateY(-1px);
+            background: var(--burgundy-dark);
+        }
+
+        /* COMPACT HERO */
+
+        .features-hero {
+            min-height: 370px;
+            padding: 52px 4.8vw;
+            display: grid;
+            grid-template-columns: 1.05fr .95fr;
+            align-items: center;
+            gap: 45px;
+        }
+
+        .eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            margin-bottom: 19px;
+            color: var(--brown);
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 2.2px;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 25px;
+            height: 1px;
+            background: var(--rose);
+            flex-shrink: 0;
+        }
+
+        .hero-copy h1 {
+            max-width: 510px;
+            font-family: var(--serif);
+            font-size: clamp(38px, 4.2vw, 57px);
+            font-weight: 500;
+            line-height: 1.04;
+            letter-spacing: -1.8px;
+        }
+
+        .hero-copy h1 em {
+            color: var(--burgundy);
+            font-weight: 500;
+        }
+
+        .hero-description {
+            max-width: 455px;
+            margin-top: 19px;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 23px;
+        }
+
+        .primary-button {
+            min-height: 43px;
+            min-width: 192px;
+            padding: 0 17px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            border-radius: 4px;
+            background: var(--burgundy);
+            color: #fff7ee;
+            font-size: 11px;
+            font-weight: 500;
+            transition: background .2s ease, transform .2s ease;
+        }
+
+        .primary-button:hover {
+            background: var(--burgundy-dark);
+            transform: translateY(-2px);
+        }
+
+        .primary-button .arrow {
+            font-size: 17px;
+        }
+
+        .text-link {
+            color: var(--brown);
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .text-link span {
+            margin-left: 5px;
+            color: var(--burgundy);
+        }
+
+        /* RIGHT-SIDE SUMMARY CARD */
+
+        .preview-wrap {
+            position: relative;
+            padding: 15px 13px;
+        }
+
+        .preview-decoration {
+            position: absolute;
+            inset: 30px 0 0 25px;
+            border-radius: 10px;
+            background: #dfc3b2;
+        }
+
+        .preview-card {
+            position: relative;
+            padding: 25px;
+            background: var(--cream-light);
+            border: 1px solid rgba(74, 48, 43, .09);
+            border-radius: 9px;
+            box-shadow: 0 15px 35px rgba(57, 32, 24, .08);
+        }
+
+        .preview-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 15px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .preview-kicker {
+            margin-bottom: 6px;
+            color: var(--rose);
+            font-size: 8px;
+            font-weight: 600;
+            letter-spacing: 1.7px;
+        }
+
+        .preview-top h2 {
+            font-family: var(--serif);
+            font-size: 27px;
+            font-weight: 500;
+        }
+
+        .overview-tag {
+            padding: 7px 10px;
+            border-radius: 20px;
+            background: #eee0d1;
+            color: var(--brown);
+            font-size: 9px;
+            white-space: nowrap;
+        }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+            padding-top: 17px;
+        }
+
+        .preview-item {
+            min-height: 85px;
+            padding: 14px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: rgba(255, 255, 255, .24);
+        }
+
+        .preview-item span {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        .preview-item strong {
+            font-family: var(--serif);
+            font-size: 25px;
+            font-weight: 500;
+            color: var(--burgundy);
+        }
+
+        .preview-footer {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 13px;
+            padding: 13px;
+            border-radius: 6px;
+            background: #efe2d3;
+        }
+
+        .preview-footer-icon {
+            width: 32px;
+            height: 32px;
+            display: grid;
+            place-items: center;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            color: var(--burgundy);
+            flex-shrink: 0;
+        }
+
+        .preview-footer strong {
+            display: block;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .preview-footer p {
+            margin-top: 3px;
+            color: var(--muted);
+            font-size: 9px;
+            line-height: 1.5;
+        }
+
+        /* SMALL BENEFIT STRIP */
+
+        .benefits {
+            padding: 20px 4.8vw;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 25px;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            background: rgba(248, 240, 227, .48);
+        }
+
+        .benefit {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 0;
+        }
+
+        .benefit-icon {
+            width: 34px;
+            height: 34px;
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            color: var(--burgundy);
+            font-size: 15px;
+        }
+
+        .benefit strong {
+            display: block;
+            color: var(--brown);
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .benefit p {
+            margin-top: 4px;
+            color: var(--muted);
+            font-size: 9px;
+            line-height: 1.5;
+        }
+
+        /* FEATURES SECTION — SHORT GRID */
+
+        .features-section {
+            padding: 42px 4.8vw 48px;
+        }
+
+        .section-heading {
+            max-width: 530px;
+            margin-bottom: 25px;
+        }
+
+        .section-heading .eyebrow {
+            margin-bottom: 12px;
+        }
+
+        .section-heading h2 {
+            font-family: var(--serif);
+            font-size: clamp(28px, 3vw, 39px);
+            line-height: 1.12;
+            font-weight: 500;
+            letter-spacing: -1px;
+        }
+
+        .section-heading h2 em {
+            color: var(--burgundy);
+            font-weight: 500;
+        }
+
+        .section-heading > p:last-child {
+            margin-top: 11px;
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.7;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 13px;
+        }
+
+        .feature-card {
+            min-height: 157px;
+            padding: 19px;
+            border: 1px solid var(--border);
+            border-radius: 7px;
+            background: rgba(248, 240, 227, .5);
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(57, 32, 24, .06);
+        }
+
+        .feature-card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+        }
+
+        .feature-icon {
+            width: 35px;
+            height: 35px;
+            display: grid;
+            place-items: center;
+            border: 1px solid var(--border);
+            border-radius: 7px;
+            color: var(--burgundy);
+            font-size: 17px;
+        }
+
+        .feature-number {
+            color: #b7a69b;
+            font-family: var(--serif);
+            font-size: 12px;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 7px;
+            font-family: var(--serif);
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .feature-card p {
+            color: var(--muted);
+            font-size: 10px;
+            line-height: 1.7;
+        }
+
+        /* COMPACT CTA */
+
+        .closing {
+            margin: 0 4.8vw 24px;
+            padding: 35px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+            border-radius: 8px;
+            background: var(--burgundy);
+            color: #fff8ef;
+        }
+
+        .closing .eyebrow {
+            margin-bottom: 10px;
+            color: #e6c9bd;
+        }
+
+        .closing h2 {
+            max-width: 510px;
+            font-family: var(--serif);
+            font-size: clamp(25px, 3vw, 36px);
+            line-height: 1.15;
+            font-weight: 500;
+        }
+
+        .closing p.description {
+            margin-top: 9px;
+            color: rgba(255, 248, 239, .8);
+            font-size: 10px;
+            line-height: 1.7;
+        }
+
+        .closing-button {
+            min-width: 155px;
+            min-height: 42px;
+            padding: 0 15px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            border-radius: 4px;
+            background: var(--cream-light);
+            color: var(--burgundy);
+            font-size: 10px;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: transform .2s ease;
+        }
+
+        .closing-button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* FOOTER */
+
+        .footer {
+            min-height: 62px;
+            padding: 17px 4.8vw;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            color: var(--burgundy);
+            font-family: var(--serif);
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .footer-brand svg {
+            width: 19px;
+            height: 21px;
+        }
+
+        .footer-note {
+            color: var(--muted);
+            font-size: 9px;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: var(--brown);
+            font-size: 9px;
+        }
+
+        .footer-links a:hover {
+            color: var(--burgundy);
+        }
+
+        /* LARGE LAPTOP */
+
+        @media (max-width: 1200px) and (min-width: 1025px) {
+            .navbar {
+                padding: 0 4vw;
+            }
+
+            .nav-links {
+                margin-left: 30px;
+                gap: 28px;
+            }
+
+            .features-hero {
+                padding-left: 4vw;
+                padding-right: 4vw;
+                gap: 30px;
+            }
+
+            .hero-copy h1 {
+                font-size: 46px;
+            }
+
+            .preview-card {
+                padding: 20px;
+            }
+
+            .features-section,
+            .benefits {
+                padding-left: 4vw;
+                padding-right: 4vw;
+            }
+
+            .closing {
+                margin-left: 4vw;
+                margin-right: 4vw;
+            }
+        }
+
+        /* TABLET */
+
+        @media (max-width: 1024px) {
+            .navbar {
+                padding: 0 30px;
+            }
+
+            .nav-links {
+                gap: 20px;
+                margin-left: 20px;
+            }
+
+            .features-hero {
+                min-height: 340px;
+                padding: 42px 30px;
+                gap: 25px;
+            }
+
+            .hero-copy h1 {
+                font-size: clamp(36px, 4.7vw, 47px);
+            }
+
+            .hero-description {
+                font-size: 11px;
+            }
+
+            .preview-card {
+                padding: 18px;
+            }
+
+            .preview-top h2 {
+                font-size: 23px;
+            }
+
+            .preview-item {
+                min-height: 76px;
+                padding: 11px;
+            }
+
+            .benefits,
+            .features-section {
+                padding-left: 30px;
+                padding-right: 30px;
+            }
+
+            .closing {
+                margin-left: 30px;
+                margin-right: 30px;
+            }
+
+            .feature-card {
+                padding: 15px;
+            }
+
+            .footer {
+                padding-left: 30px;
+                padding-right: 30px;
+            }
+        }
+
+        /* SMALL TABLET */
+
+        @media (max-width: 800px) {
+            .navbar {
+                height: 66px;
+                padding: 0 24px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-actions {
+                margin-left: auto;
+            }
+
+            .features-hero {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                padding: 42px 30px 35px;
+            }
+
+            .hero-copy {
+                max-width: 600px;
+            }
+
+            .hero-copy h1 {
+                max-width: 550px;
+                font-size: clamp(39px, 6.5vw, 52px);
+            }
+
+            .hero-description {
+                max-width: 520px;
+                font-size: 12px;
+            }
+
+            .preview-wrap {
+                width: 100%;
+                max-width: 520px;
+                margin: 0 auto;
+            }
+
+            .preview-card {
+                padding: 22px;
+            }
+
+            .preview-item {
+                min-height: 80px;
+            }
+
+            .benefits {
+                gap: 15px;
+            }
+
+            .benefit {
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .benefit-icon {
+                width: 30px;
+                height: 30px;
+            }
+
+            .feature-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .closing {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        /* PHONE */
+
+        @media (max-width: 600px) {
+            html {
+                scroll-padding-top: 68px;
+            }
+
+            .navbar {
+                height: 68px;
+                padding: 0 20px;
+            }
+
+            .brand {
+                gap: 8px;
+            }
+
+            .brand-icon {
+                width: 23px;
+                height: 27px;
+            }
+
+            .brand-name {
+                font-size: 18px;
+            }
+
+            .nav-actions {
+                gap: 6px;
+            }
+
+            .signup,
+            .nav-button {
+                min-height: 33px;
+                padding: 9px 13px;
+                font-size: 10px;
+            }
+
+            .nav-button {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+            .features-hero {
+                padding: 37px 22px 30px;
+                gap: 17px;
+            }
+
+            .eyebrow {
+                margin-bottom: 15px;
+                font-size: 8px;
+                letter-spacing: 1.8px;
+            }
+
+            .hero-copy h1 {
+                font-size: clamp(36px, 9vw, 45px);
+                line-height: 1.04;
+                letter-spacing: -1.4px;
+            }
+
+            .hero-description {
+                margin-top: 15px;
+                font-size: 11px;
+                line-height: 1.8;
+            }
+
+            .hero-actions {
+                gap: 17px;
+                margin-top: 19px;
+            }
+
+            .primary-button {
+                min-width: 180px;
+                min-height: 43px;
+            }
+
+            .text-link {
+                font-size: 10px;
+            }
+
+            .preview-wrap {
+                padding: 10px 7px;
+            }
+
+            .preview-decoration {
+                inset: 20px 0 0 14px;
+            }
+
+            .preview-card {
+                padding: 16px;
+            }
+
+            .preview-top {
+                padding-bottom: 13px;
+            }
+
+            .preview-top h2 {
+                font-size: 23px;
+            }
+
+            .overview-tag {
+                padding: 6px 8px;
+                font-size: 8px;
+            }
+
+            .preview-grid {
+                gap: 7px;
+                padding-top: 12px;
+            }
+
+            .preview-item {
+                min-height: 70px;
+                padding: 10px;
+            }
+
+            .preview-item span {
+                margin-bottom: 7px;
+                font-size: 9px;
+            }
+
+            .preview-item strong {
+                font-size: 22px;
+            }
+
+            .preview-footer {
+                padding: 10px;
+            }
+
+            .benefits {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                padding: 20px 22px;
+            }
+
+            .benefit {
+                align-items: center;
+            }
+
+            .benefit strong {
+                font-size: 10px;
+            }
+
+            .benefit p {
+                font-size: 9px;
+            }
+
+            .features-section {
+                padding: 33px 22px 35px;
+            }
+
+            .section-heading {
+                margin-bottom: 20px;
+            }
+
+            .section-heading h2 {
+                font-size: 31px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .feature-card {
+                min-height: auto;
+                padding: 16px;
+            }
+
+            .feature-card-top {
+                margin-bottom: 10px;
+            }
+
+            .feature-card h3 {
+                font-size: 18px;
+            }
+
+            .feature-card p {
+                font-size: 10px;
+            }
+
+            .closing {
+                margin: 0 16px 18px;
+                padding: 27px 21px;
+                gap: 18px;
+            }
+
+            .closing h2 {
+                font-size: 29px;
+            }
+
+            .closing-button {
+                min-height: 42px;
+            }
+
+            .footer {
+                padding: 17px 20px;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                row-gap: 12px;
+            }
+
+            .footer-note {
+                order: 3;
+                width: 100%;
+                text-align: left;
+            }
+
+            .footer-links {
+                gap: 13px;
+            }
+        }
+
+        /* VERY SMALL PHONE */
+
+        @media (max-width: 360px) {
+            .navbar {
+                padding: 0 12px;
+            }
+
+            .brand {
+                gap: 5px;
+            }
+
+            .brand-name {
+                font-size: 16px;
+            }
+
+            .brand-icon {
+                width: 20px;
+                height: 23px;
+            }
+
+            .nav-actions {
+                gap: 4px;
+            }
+
+            .signup,
+            .nav-button {
+                padding: 8px 10px;
+                font-size: 9px;
+            }
+
+            .features-hero {
+                padding-left: 17px;
+                padding-right: 17px;
+            }
+
+            .hero-copy h1 {
+                font-size: 35px;
+            }
+
+            .hero-actions {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 13px;
+            }
+
+            .preview-top h2 {
+                font-size: 21px;
+            }
+
+            .preview-card {
+                padding: 13px;
+            }
+
+            .benefits,
+            .features-section {
+                padding-left: 17px;
+                padding-right: 17px;
+            }
+
+            .closing {
+                margin-left: 12px;
+                margin-right: 12px;
+                padding: 23px 17px;
+            }
+
+            .footer {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+            .footer-links {
+                gap: 10px;
+            }
+        }
+
+        /* REDUCED MOTION ACCESSIBILITY */
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <a href="{% url 'home' %}" class="brand" aria-label="DwellDome home">
+            <span class="brand-icon">
+                <svg viewBox="0 0 40 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M5 17.5L20 4L35 17.5V39H5V17.5Z"
+                          fill="none" stroke="currentColor"
+                          stroke-width="2.2" stroke-linejoin="round"/>
+                    <text x="20" y="31" text-anchor="middle"
+                          font-family="Georgia, serif" font-size="12"
+                          font-weight="600" fill="currentColor">DD</text>
+                </svg>
+            </span>
+            <span class="brand-name">DwellDome</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Main navigation">
+            <a href="{% url 'features' %}" class="active" aria-current="page">Features</a>
+            <a href="{% url 'about' %}">About</a>
+            <a href="{% url 'contact' %}">Contact</a>
+        </nav>
+
+        <div class="nav-actions">
+            <a href="{% url 'register' %}" class="signup">Sign Up</a>
+            <a href="{% url 'login' %}" class="nav-button">Login</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section class="features-hero">
+            <div class="hero-copy">
+                <p class="eyebrow">A MORE THOUGHTFUL WAY TO MANAGE HOME</p>
+
+                <h1>
+                    A place for<br>
+                    everything.<br>
+                    <em>Peace of mind.</em>
+                </h1>
+
+                <p class="hero-description">
+                    Your home holds more than things. It holds memories,
+                    responsibilities and details worth remembering.
+                    DwellDome brings your essential home information
+                    together in one beautifully organized place.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="{% url 'register' %}" class="primary-button">
+                        <span>Explore your home</span>
+                        <span class="arrow" aria-hidden="true">→</span>
+                    </a>
+
+                    <a href="#feature-list" class="text-link">
+                        Discover features <span aria-hidden="true">↓</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="preview-wrap" aria-label="Illustration of the DwellDome home overview">
+                <div class="preview-decoration"></div>
+
+                <div class="preview-card">
+                    <div class="preview-top">
+                        <div>
+                            <p class="preview-kicker">YOUR PERSONAL SPACE</p>
+                            <h2>My Home</h2>
+                        </div>
+                        <span class="overview-tag">● Your overview</span>
+                    </div>
+
+                    <div class="preview-grid">
+                        <div class="preview-item">
+                            <span>Home assets</span>
+                            <strong>01.</strong>
+                        </div>
+
+                        <div class="preview-item">
+                            <span>Home records</span>
+                            <strong>02.</strong>
+                        </div>
+
+                        <div class="preview-item">
+                            <span>Maintenance</span>
+                            <strong>03.</strong>
+                        </div>
+
+                        <div class="preview-item">
+                            <span>Expenses</span>
+                            <strong>04.</strong>
+                        </div>
+                    </div>
+
+                    <div class="preview-footer">
+                        <span class="preview-footer-icon" aria-hidden="true">⌂</span>
+                        <div>
+                            <strong>Everything in its place</strong>
+                            <p>One organized view of your home essentials.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BENEFITS -->
+        <section class="benefits" aria-label="DwellDome benefits">
+            <div class="benefit">
+                <span class="benefit-icon" aria-hidden="true">⌂</span>
+                <div>
+                    <strong>Your home, in one place</strong>
+                    <p>Keep important details together.</p>
+                </div>
+            </div>
+
+            <div class="benefit">
+                <span class="benefit-icon" aria-hidden="true">◇</span>
+                <div>
+                    <strong>Stay organized</strong>
+                    <p>Find household records more easily.</p>
+                </div>
+            </div>
+
+            <div class="benefit">
+                <span class="benefit-icon" aria-hidden="true">♡</span>
+                <div>
+                    <strong>Feel more in control</strong>
+                    <p>Spend less time searching for details.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURE CARDS -->
+        <section class="features-section" id="feature-list">
+            <div class="section-heading">
+                <p class="eyebrow">THE DETAILS THAT MATTER</p>
+                <h2>Your home life,<br><em>beautifully in order.</em></h2>
+                <p>
+                    From the rooms you live in to the records you need to keep,
+                    manage your household details in one organized space.
+                </p>
+            </div>
+
+            <div class="feature-grid">
+                <article class="feature-card">
+                    <div class="feature-card-top">
+                        <span class="feature-icon" aria-hidden="true">⌂</span>
+                        <span class="feature-number">01</span>
+                    </div>
+                    <h3>My Home &amp; Rooms</h3>
+                    <p>Organize your home into rooms and keep each space's details together.</p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-card-top">
+                        <span class="feature-icon" aria-hidden="true">▣</span>
+                        <span class="feature-number">02</span>
+                    </div>
+                    <h3>Asset Management</h3>
+                    <p>Keep records of household belongings, details and purchase information.</p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-card-top">
+                        <span class="feature-icon" aria-hidden="true">▤</span>
+                        <span class="feature-number">03</span>
+                    </div>
+                    <h3>Warranty Tracking</h3>
+                    <p>Record warranty details and keep track of expiry dates.</p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-card-top">
+                        <span class="feature-icon" aria-hidden="true">↻</span>
+                        <span class="feature-number">04</span>
+                    </div>
+                    <h3>Maintenance Records</h3>
+                    <p>Keep service history and upcoming maintenance details together.</p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-card-top">
+                        <span class="feature-icon" aria-hidden="true">▧</span>
+                        <span class="feature-number">05</span>
+                    </div>
+                    <h3>Important Documents</h3>
+                    <p>Store household documents and associate them with relevant assets.</p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-card-top">
+                        <span class="feature-icon" aria-hidden="true">₹</span>
+                        <span class="feature-number">06</span>
+                    </div>
+                    <h3>Expense Tracking</h3>
+                    <p>Record household purchases, repairs, services and other expenses.</p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-card-top">
+                        <span class="feature-icon" aria-hidden="true">⌁</span>
+                        <span class="feature-number">07</span>
+                    </div>
+                    <h3>Home Analytics</h3>
+                    <p>Review your recorded assets, expenses, warranties and maintenance.</p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-card-top">
+                        <span class="feature-icon" aria-hidden="true">♧</span>
+                        <span class="feature-number">08</span>
+                    </div>
+                    <h3>Notifications</h3>
+                    <p>Keep an eye on relevant reminders and household updates.</p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-card-top">
+                        <span class="feature-icon" aria-hidden="true">⌕</span>
+                        <span class="feature-number">09</span>
+                    </div>
+                    <h3>Quick Search</h3>
+                    <p>Find matching assets, rooms, warranties and saved information.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- CALL TO ACTION -->
+        <section class="closing">
+            <div>
+                <p class="eyebrow">YOUR HOME, YOUR SPACE</p>
+                <h2>Ready to bring it all together?</h2>
+                <p class="description">
+                    Start building a more organized picture of your home with DwellDome.
+                </p>
+            </div>
+
+            <a href="{% url 'register' %}" class="closing-button">
+                <span>Create your home</span>
+                <span aria-hidden="true">→</span>
+            </a>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <a href="{% url 'home' %}" class="footer-brand">
+            <svg viewBox="0 0 40 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M5 17.5L20 4L35 17.5V39H5V17.5Z"
+                      fill="none" stroke="currentColor"
+                      stroke-width="2.2" stroke-linejoin="round"/>
+                <text x="20" y="31" text-anchor="middle"
+                      font-family="Georgia, serif" font-size="12"
+                      font-weight="600" fill="currentColor">DD</text>
+            </svg>
+            <span>DwellDome</span>
+        </a>
+
+        <p class="footer-note">Thoughtfully organizing the details of home.</p>
+
+        <nav class="footer-links" aria-label="Footer navigation">
+            <a href="{% url 'features' %}">Features</a>
+            <a href="{% url 'about' %}">About</a>
+            <a href="{% url 'contact' %}">Contact</a>
+        </nav>
+    </footer>
+</body>
+</html>
