@@ -89,43 +89,40 @@ input {
    NAVBAR
 ========================================================= */
 
-.navbar {
+/* =========================================================
+   NAVBAR — MATCHES ABOUT.HTML
+========================================================= */
 
+.navbar {
     width: 100%;
     height: 66px;
-
     padding: 0 4.8vw;
 
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
     align-items: center;
-    justify-content: space-between;
+    column-gap: 16px;
 
-    position: relative;
+    position: sticky;
+    top: 0;
     z-index: 50;
 
     background: var(--cream);
-
     border-bottom: 1px solid var(--border);
 }
 
-
-/* =========================================================
-   BRAND
-========================================================= */
+/* BRAND */
 
 .brand {
-
     display: flex;
     align-items: center;
-
+    justify-self: start;
     gap: 9px;
-
+    min-width: 0;
     flex-shrink: 0;
 }
 
-
 .brand-icon {
-
     width: 22px;
     height: 25px;
 
@@ -134,108 +131,311 @@ input {
     justify-content: center;
 
     color: var(--burgundy);
+    flex-shrink: 0;
 }
 
-
 .brand-icon svg {
-
     width: 100%;
     height: 100%;
 }
 
-
 .brand-name {
-
+    color: var(--burgundy);
     font-family: var(--serif);
-
     font-size: 18px;
     font-weight: 600;
-
-    letter-spacing: -0.4px;
-
-    color: var(--burgundy);
+    letter-spacing: -.4px;
+    white-space: nowrap;
 }
 
-
-/* =========================================================
-   NAVIGATION
-========================================================= */
+/* NAVIGATION LINKS */
 
 .nav-links {
-
     display: flex;
     align-items: center;
+    justify-content: center;
+    justify-self: center;
 
-    gap: 34px;
-
-    margin-left: 80px;
+    gap: 28px;
+    margin: 0;
+    min-width: 0;
+    white-space: nowrap;
 }
-
 
 .nav-links a {
-
-    font-size: 11px;
-
+    position: relative;
     color: var(--brown);
-
-    transition: color .25s ease;
+    font-size: 11px;
+    white-space: nowrap;
+    transition: color .2s ease;
 }
 
-
-.nav-links a:hover {
-
+.nav-links a:hover,
+.nav-links a.active {
     color: var(--burgundy);
 }
 
+.nav-links a.active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -9px;
+    height: 1px;
+    background: var(--burgundy);
+}
 
-/* =========================================================
-   NAV ACTIONS
-========================================================= */
+/* NAVIGATION BUTTONS */
 
 .nav-actions {
-
     display: flex;
     align-items: center;
+    justify-self: end;
 
-    gap: 11px;
+    gap: 8px;
+    margin: 0;
+    flex-shrink: 0;
 
     position: relative;
     z-index: 100;
 }
 
-
-/* =========================================================
-   SIGN UP BUTTON
-========================================================= */
-
-.signup {
-
-    padding: 10px 19px;
+.signup,
+.nav-button {
+    min-height: 36px;
+    padding: 10px 17px;
 
     display: inline-flex;
     align-items: center;
     justify-content: center;
 
+    border: none;
+    border-radius: 30px;
     background: var(--burgundy);
-
     color: #fff8ef;
 
-    border-radius: 30px;
-
+    font-family: var(--sans);
     font-size: 11px;
     font-weight: 500;
+    line-height: 1.2;
+    white-space: nowrap;
 
-    transition:
-        transform .25s ease,
-        background .25s ease;
+    position: relative;
+    z-index: 101;
+    pointer-events: auto;
+
+    transition: background .2s ease, transform .2s ease;
 }
 
+.nav-button {
+    padding-left: 19px;
+    padding-right: 19px;
+}
 
-.signup:hover {
-
-    transform: translateY(-2px);
-
+.signup:hover,
+.nav-button:hover {
     background: var(--burgundy-dark);
+    transform: translateY(-1px);
+}
+
+/* LAPTOP: 1025px–1200px */
+
+@media (max-width: 1200px) and (min-width: 1025px) {
+    .navbar {
+        padding: 0 4vw;
+    }
+
+    .nav-links {
+        gap: 24px;
+    }
+}
+
+/* TABLET: 801px–1024px */
+
+@media (max-width: 1024px) and (min-width: 801px) {
+    .navbar {
+        padding: 0 24px;
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        column-gap: 10px;
+    }
+
+    .nav-links {
+        gap: 16px;
+    }
+}
+
+/* SMALL TABLET: 601px–800px */
+
+@media (max-width: 800px) and (min-width: 601px) {
+    .navbar {
+        height: 66px;
+        padding: 0 12px;
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        column-gap: 6px;
+    }
+
+    .brand {
+        gap: 5px;
+    }
+
+    .brand-name {
+        font-size: 16px;
+    }
+
+    .nav-links {
+        gap: clamp(5px, 1.5vw, 10px);
+        margin: 0;
+    }
+
+    .nav-links a {
+        font-size: 9px;
+    }
+
+    .nav-actions {
+        gap: 4px;
+    }
+
+    .signup,
+    .nav-button {
+        min-height: 32px;
+        padding: 8px 9px;
+        font-size: 9px;
+    }
+}
+
+/* PHONE: 381px–600px */
+
+@media (max-width: 600px) {
+    .navbar {
+        height: 68px;
+        padding: 0 12px;
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        column-gap: 5px;
+    }
+
+    .brand {
+        gap: 4px;
+    }
+
+    .brand-icon {
+        width: 20px;
+        height: 24px;
+    }
+
+    .brand-name {
+        font-size: 15px;
+        letter-spacing: -.5px;
+    }
+
+    .nav-links {
+        display: flex;
+        justify-self: center;
+        align-items: center;
+        gap: clamp(4px, 1.4vw, 8px);
+        margin: 0;
+        min-width: 0;
+    }
+
+    .nav-links a {
+        font-size: 8.5px;
+    }
+
+    .nav-links a.active::after {
+        bottom: -7px;
+    }
+
+    .nav-actions {
+        justify-self: end;
+        gap: 3px;
+        margin: 0;
+    }
+
+    .signup,
+    .nav-button {
+        min-height: 30px;
+        padding: 7px;
+        font-size: 8.5px;
+    }
+
+    .nav-button {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+}
+
+/* VERY SMALL PHONE: 331px–380px */
+
+@media (max-width: 380px) {
+    .navbar {
+        padding: 0 8px;
+        column-gap: 4px;
+    }
+
+    .brand {
+        gap: 3px;
+    }
+
+    .brand-name {
+        font-size: 13px;
+    }
+
+    .brand-icon {
+        width: 18px;
+        height: 22px;
+    }
+
+    .nav-links {
+        gap: 4px;
+    }
+
+    .nav-links a {
+        font-size: 8px;
+    }
+
+    .nav-actions {
+        gap: 3px;
+    }
+
+    .signup,
+    .nav-button {
+        padding: 7px 5px;
+        font-size: 8px;
+    }
+}
+
+/* EXTRA-NARROW PHONE: 330px AND BELOW */
+
+@media (max-width: 330px) {
+    .navbar {
+        height: auto;
+        min-height: 68px;
+        grid-template-columns: 1fr auto;
+        grid-template-rows: auto auto;
+        padding: 9px 12px;
+        row-gap: 10px;
+    }
+
+    .brand {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .nav-actions {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .nav-links {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        justify-self: center;
+        gap: 22px;
+        padding-bottom: 2px;
+    }
+
+    .nav-links a {
+        font-size: 10px;
+    }
 }
 
 
