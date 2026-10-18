@@ -267,3 +267,25 @@ if not DEBUG:
         for origin in os.getenv("CSRF_TRUSTED_ORIGINS", "").split(",")
         if origin.strip()
     ]
+
+
+# --------------------------------------------------
+# LOGGING — diagnose production errors
+# --------------------------------------------------
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["console"],
+            "level": "ERROR",
+            "propagate": True,
+        },
+    },
+}
