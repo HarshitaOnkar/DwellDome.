@@ -19,7 +19,7 @@
 
 :root {
 
-    color-scheme: light;
+    color-scheme: only light;
 
     --cream: #f4ead8;
     --cream-light: #f8f0e3;
@@ -1326,16 +1326,15 @@ input {
 
     .nav-links a {
 
-        font-size: 10px;
-        display: inline-block;
+        font-size: 11px;
         white-space: nowrap;
     }
 
     .nav-actions {
 
-        margin-left: auto;
+        margin-left: 12px;
 
-        gap: 8px;
+        gap: 6px;
     }
 
 
@@ -1402,6 +1401,13 @@ input {
         left: 14%;
     }
 
+    .signup,
+    .nav-button {
+        font-size: 12px;
+        padding: 10px 12px;
+        white-space: nowrap;
+    }
+
 }
 
 
@@ -1416,16 +1422,17 @@ input {
 
         height: auto;
         min-height: 68px;
-        padding: 12px 14px;
+        padding: 10px 12px;
         display: flex;
-        flex-wrap: wrap;
-        gap: 12px 8px;
+        flex-wrap: nowrap;
+        gap: 8px;
     }
 
 
     .brand {
 
-        gap: 8px;
+        flex-shrink: 0;
+        font-size: 20px;
     }
 
 
@@ -1444,31 +1451,31 @@ input {
 
 
     .nav-actions {
-        margin-left: auto;
-        gap: 6px;
+        flex-shrink: 0;
+        margin-left: 0px;
+        gap: 4px;
     }
 
     .nav-links {
 
-        order: 3;
-        width: 100%;
-        flex-basis: 100%;
+        display: flex;
+        flex: 1;
+        min-width: 0;
         justify-content: center;
-        gap: clamp(14px, 5vw, 28px);
-        margin-left: 0;
-        padding: 8px 0 2px;
+        gap: 8px;
+        margin-left: auto;
     }
 
 
     .nav-links a {
 
-        font-size: 11px;
+        font-size: 10px;
     }
 
 
     .signup {
 
-        padding: 10px 13px;
+        padding: 9px 8px;
 
         font-size: 10px;
     }
