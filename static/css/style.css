@@ -19,6 +19,8 @@
 
 :root {
 
+    color-scheme: light;
+
     --cream: #f4ead8;
     --cream-light: #f8f0e3;
 
@@ -1314,9 +1316,20 @@ input {
 
     .nav-links {
 
-        display: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin-left: auto;
+        flex-wrap: nowrap;
     }
 
+    .nav-links a {
+
+        font-size: 10px;
+        display: inline-block;
+        white-space: nowrap;
+    }
 
     .nav-actions {
 
@@ -1401,9 +1414,12 @@ input {
 
     .navbar {
 
-        height: 68px;
-
-        padding: 0 20px;
+        height: auto;
+        min-height: 68px;
+        padding: 12px 14px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px 8px;
     }
 
 
@@ -1428,8 +1444,25 @@ input {
 
 
     .nav-actions {
-
+        margin-left: auto;
         gap: 6px;
+    }
+
+    .nav-links {
+
+        order: 3;
+        width: 100%;
+        flex-basis: 100%;
+        justify-content: center;
+        gap: clamp(14px, 5vw, 28px);
+        margin-left: 0;
+        padding: 8px 0 2px;
+    }
+
+
+    .nav-links a {
+
+        font-size: 11px;
     }
 
 
@@ -1660,7 +1693,17 @@ input {
 
     .navbar {
 
-        padding: 0 15px;
+        padding: 10px 12px;
+    }
+
+    .nav-links {
+
+        gap: 16px;
+    }
+
+    .nav-links a {
+
+        font-size: 10px;
     }
 
 
