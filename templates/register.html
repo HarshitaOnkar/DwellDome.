@@ -1,56 +1,35 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f4ead8">
 
     <title>Create Account — DwellDome</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap"
-        rel="stylesheet"
-    >
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
 
     <style>
-
         /* =========================================
            DWELLDOME SIGNUP
-           ========================================= */
+        ========================================= */
 
         :root {
             --cream: #f4ead8;
             --cream-light: #f8f0e3;
-
             --burgundy: #672731;
             --burgundy-dark: #4d1b24;
-
             --rose: #c98f82;
-            --rose-light: #e5c8bd;
-
             --brown: #5b4942;
             --dark: #281e1d;
-
             --muted: #766763;
-
             --border: rgba(74, 48, 43, 0.18);
-
             --serif: "Playfair Display", Georgia, serif;
             --sans: "DM Sans", Arial, sans-serif;
         }
-
-
-        /* =========================================
-           RESET
-           ========================================= */
 
         * {
             margin: 0;
@@ -58,851 +37,790 @@
             box-sizing: border-box;
         }
 
-
-        html,
-        body {
-            width: 100%;
+        html {
             min-height: 100%;
+            color-scheme: light;
         }
 
-
         body {
+            min-height: 100vh;
+            min-height: 100dvh;
             font-family: var(--sans);
             background: var(--cream);
             color: var(--dark);
         }
 
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
 
         /* =========================================
-           MAIN PAGE
-           ========================================= */
+           PAGE LAYOUT
+        ========================================= */
 
         .signup-page {
             min-height: 100vh;
-
+            min-height: 100dvh;
             padding: 19px 30px;
-
             display: grid;
-            grid-template-columns: 1.02fr 1fr;
+            grid-template-columns: minmax(0, 1.02fr) minmax(0, 1fr);
+            align-items: stretch;
         }
-
 
         /* =========================================
            LEFT VISUAL PANEL
-           ========================================= */
+        ========================================= */
 
         .signup-visual {
             position: relative;
-
+            min-width: 0;
             min-height: calc(100vh - 38px);
-
+            min-height: calc(100dvh - 38px);
             overflow: hidden;
-
             border-radius: 18px 0 0 18px;
-
             isolation: isolate;
-
-            color: #ffffff;
+            color: #fff;
+            background: #72584a;
         }
-
 
         .visual-image {
             position: absolute;
             inset: 0;
-
-            background-image:
-                url("https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1500&q=85");
-
+            z-index: -3;
+            background-image: url("https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1500&q=85");
             background-size: cover;
             background-position: center;
-
-            z-index: -3;
-
             transform: scale(1.01);
         }
-
 
         .visual-overlay {
             position: absolute;
             inset: 0;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    rgba(48, 31, 26, 0.60) 0%,
-                    rgba(48, 31, 26, 0.30) 48%,
-                    rgba(48, 31, 26, 0.12) 100%
-                );
-
             z-index: -2;
+            background: linear-gradient(
+                180deg,
+                rgba(39, 26, 23, 0.28) 0%,
+                rgba(39, 26, 23, 0.10) 35%,
+                rgba(39, 26, 23, 0.68) 100%
+            );
         }
-
 
         /* =========================================
            BRAND
-           ========================================= */
+        ========================================= */
 
         .visual-brand {
             position: absolute;
-
-            top: 42px;
-            left: 46px;
-
-            display: flex;
+            top: 38px;
+            left: 42px;
+            z-index: 2;
+            display: inline-flex;
             align-items: center;
             gap: 10px;
-
-            color: #ffffff;
-
-            text-decoration: none;
-
+            max-width: calc(100% - 84px);
+            color: #fff;
             font-family: var(--serif);
             font-size: 22px;
             font-weight: 600;
-
-            z-index: 2;
+            line-height: 1.2;
         }
-
 
         .brand-icon {
             width: 29px;
             height: 32px;
-
+            flex-shrink: 0;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-
         .brand-icon svg {
+            display: block;
             width: 100%;
             height: 100%;
         }
 
-
         /* =========================================
            VISUAL CONTENT
-           ========================================= */
+        ========================================= */
 
         .visual-content {
             position: absolute;
-
-            left: 46px;
-            bottom: 108px;
-
-            max-width: 410px;
+            left: 42px;
+            right: 42px;
+            bottom: 100px;
+            max-width: 480px;
         }
-
 
         .visual-eyebrow {
-            margin-bottom: 18px;
-
+            margin-bottom: 17px;
             font-size: 9px;
             font-weight: 600;
-
             letter-spacing: 2.4px;
-
-            color: rgba(255, 255, 255, 0.78);
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.88);
         }
-
 
         .visual-content h1 {
+            max-width: 100%;
             font-family: var(--serif);
-
-            font-size: clamp(32px, 3.2vw, 51px);
-
-            line-height: 1.08;
-
+            font-size: clamp(34px, 3.6vw, 51px);
             font-weight: 500;
-
-            letter-spacing: -1.2px;
-
-            color: #ffffff;
+            line-height: 1.09;
+            letter-spacing: -1.1px;
+            color: #fff;
+            overflow-wrap: normal;
+            text-wrap: balance;
         }
-
 
         .visual-line {
             width: 43px;
             height: 1px;
-
-            margin: 24px 0 18px;
-
-            background: rgba(255, 255, 255, 0.7);
+            margin: 22px 0 16px;
+            background: rgba(255, 255, 255, 0.75);
         }
-
 
         .visual-caption {
             font-size: 10px;
-            line-height: 1.7;
-
+            line-height: 1.8;
             letter-spacing: 1.6px;
-
             text-transform: uppercase;
-
-            color: rgba(255, 255, 255, 0.72);
+            color: rgba(255, 255, 255, 0.86);
         }
-
 
         /* =========================================
            VISUAL FOOTER
-           ========================================= */
+        ========================================= */
 
         .visual-footer {
             position: absolute;
-
-            left: 46px;
-            right: 46px;
-            bottom: 28px;
-
+            left: 42px;
+            right: 42px;
+            bottom: 27px;
             display: flex;
             align-items: center;
-
-            gap: 12px;
-
+            flex-wrap: wrap;
+            gap: 11px;
             font-size: 7px;
             font-weight: 600;
-
-            letter-spacing: 2px;
-
-            color: rgba(255, 255, 255, 0.8);
+            letter-spacing: 1.7px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.85);
         }
-
 
         .visual-footer i {
             width: 19px;
             height: 1px;
-
-            background: rgba(255, 255, 255, 0.5);
+            flex-shrink: 0;
+            background: rgba(255, 255, 255, 0.55);
         }
-
 
         /* =========================================
            RIGHT SIGNUP PANEL
-           ========================================= */
+        ========================================= */
 
         .signup-panel {
+            min-width: 0;
             min-height: calc(100vh - 38px);
-
+            min-height: calc(100dvh - 38px);
             display: flex;
             align-items: center;
             justify-content: center;
-
-            padding: 48px 56px;
-
+            padding: 40px 50px;
             background: var(--cream-light);
-
             border-radius: 0 18px 18px 0;
         }
 
-
         .signup-container {
-            width: min(100%, 408px);
+            width: 100%;
+            max-width: 408px;
+            min-width: 0;
         }
-
 
         /* =========================================
            SIGNUP HEADING
-           ========================================= */
+        ========================================= */
 
         .signup-heading {
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
-
         .signup-eyebrow {
-            margin-bottom: 14px;
-
+            margin-bottom: 12px;
             font-size: 9px;
             font-weight: 600;
-
             letter-spacing: 3.2px;
-
+            line-height: 1.6;
             color: #ae765f;
         }
 
-
         .signup-heading h2 {
             font-family: var(--serif);
-
             font-size: clamp(32px, 3.2vw, 44px);
-
-            line-height: 1.08;
-
+            line-height: 1.1;
             font-weight: 500;
-
             letter-spacing: -1.2px;
-
             color: var(--dark);
         }
 
-
         .signup-heading h2 em {
             font-style: normal;
-
             color: var(--burgundy);
         }
 
-
         .signup-description {
             max-width: 344px;
-
-            margin-top: 16px;
-
+            margin-top: 13px;
             font-size: 11px;
-            line-height: 1.7;
-
+            line-height: 1.8;
             color: var(--muted);
         }
 
-
         /* =========================================
            FORM
-           ========================================= */
+        ========================================= */
 
         .signup-form {
             width: 100%;
         }
 
-
         .form-group {
-            margin-bottom: 14px;
+            margin-bottom: 12px;
         }
-
 
         .form-group label {
             display: block;
-
             margin-bottom: 6px;
-
             font-size: 10px;
             font-weight: 600;
-
             color: var(--brown);
         }
 
-
-        /* =========================================
-           INPUT
-           ========================================= */
-
         .input-wrapper {
             position: relative;
-
             width: 100%;
         }
-
 
         .input-wrapper input {
             width: 100%;
-            height: 46px;
-
+            height: 44px;
             padding: 0 42px;
-
             border: 1px solid var(--border);
-
             border-radius: 9px;
-
             outline: none;
-
             background: rgba(255, 255, 255, 0.35);
-
             font-family: var(--sans);
             font-size: 11px;
-
             color: var(--dark);
-
-            transition:
-                border-color 0.25s ease,
-                background 0.25s ease,
-                box-shadow 0.25s ease;
+            transition: border-color .25s ease, background .25s ease, box-shadow .25s ease;
         }
-
 
         .input-wrapper input::placeholder {
             color: #938681;
         }
 
-
         .input-wrapper input:focus {
             border-color: rgba(103, 39, 49, 0.55);
-
             background: rgba(255, 255, 255, 0.65);
-
-            box-shadow:
-                0 0 0 3px rgba(103, 39, 49, 0.07);
+            box-shadow: 0 0 0 3px rgba(103, 39, 49, 0.07);
         }
-
-
-        /* =========================================
-           INPUT ICON
-           ========================================= */
 
         .input-icon {
             position: absolute;
-
             left: 14px;
             top: 50%;
-
             width: 17px;
             height: 17px;
-
             transform: translateY(-50%);
-
             color: #75645e;
-
             pointer-events: none;
-
             z-index: 2;
         }
-
 
         .input-icon svg {
             width: 100%;
             height: 100%;
         }
 
-
         /* =========================================
-           PASSWORD TOGGLE
-           ========================================= */
+           PASSWORD VISIBILITY
+        ========================================= */
 
         .password-toggle {
             position: absolute;
-
             right: 14px;
             top: 50%;
-
             width: 18px;
             height: 18px;
-
             transform: translateY(-50%);
-
             display: flex;
             align-items: center;
             justify-content: center;
-
             border: 0;
-
             background: transparent;
-
             color: #6d5d58;
-
             cursor: pointer;
-
             padding: 0;
-
             z-index: 2;
         }
-
 
         .password-toggle svg {
             width: 17px;
             height: 17px;
         }
 
-
         .hidden {
             display: none !important;
         }
 
-
         /* =========================================
-           FIELD ERRORS
-           ========================================= */
+           ERRORS
+        ========================================= */
 
         .field-error {
             margin-top: 6px;
-
             font-size: 9px;
             line-height: 1.5;
-
             color: #913838;
         }
 
-
         .form-errors {
-            margin-bottom: 14px;
-
+            margin-bottom: 12px;
             padding: 10px 11px;
-
             border-radius: 7px;
-
             background: rgba(145, 52, 52, 0.08);
-
             color: #8c3636;
-
             font-size: 10px;
             line-height: 1.5;
         }
 
-
         /* =========================================
            CREATE ACCOUNT BUTTON
-           ========================================= */
+        ========================================= */
 
         .signup-button {
+            position: relative;
             width: 100%;
-            height: 49px;
-
+            min-height: 48px;
+            padding: 12px 44px 12px 18px;
             display: flex;
             align-items: center;
             justify-content: center;
-
-            position: relative;
-
             border: none;
-
             border-radius: 9px;
-
             background: var(--burgundy);
-
-            color: #ffffff;
-
+            color: #fff;
             font-family: var(--sans);
-
             font-size: 12px;
             font-weight: 600;
-
             cursor: pointer;
-
-            transition:
-                background 0.25s ease,
-                transform 0.25s ease,
-                box-shadow 0.25s ease;
+            transition: background .25s ease, transform .25s ease, box-shadow .25s ease;
         }
-
 
         .signup-button:hover {
             background: var(--burgundy-dark);
-
             transform: translateY(-1px);
-
-            box-shadow:
-                0 8px 20px rgba(103, 39, 49, 0.18);
+            box-shadow: 0 8px 20px rgba(103, 39, 49, 0.18);
         }
-
 
         .signup-button:active {
             transform: translateY(0);
         }
 
-
         .signup-button:focus-visible {
             outline: 2px solid rgba(103, 39, 49, 0.35);
-
             outline-offset: 3px;
         }
 
-
         .button-arrow {
             position: absolute;
-
             right: 17px;
-
             font-size: 18px;
             font-weight: 400;
-
-            transition: transform 0.25s ease;
+            transition: transform .25s ease;
         }
-
 
         .signup-button:hover .button-arrow {
             transform: translateX(4px);
         }
 
-
         /* =========================================
            LOGIN LINK
-           ========================================= */
+        ========================================= */
 
         .login-text {
-            margin-top: 25px;
-
+            margin-top: 20px;
             text-align: center;
-
             font-size: 10px;
-
+            line-height: 1.7;
             color: var(--muted);
         }
 
-
         .login-text a {
             color: var(--burgundy);
-
             font-weight: 600;
-
-            text-decoration: none;
         }
-
 
         .login-text a:hover {
             text-decoration: underline;
         }
 
-
         /* =========================================
-           LARGE LAPTOP
-           ========================================= */
+           LAPTOP
+        ========================================= */
 
-        @media (max-width: 1200px) and (min-width: 901px) {
-
+        @media (min-width: 901px) and (max-width: 1200px) {
             .signup-page {
                 padding: 18px 25px;
+                grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
             }
 
-
-            .signup-visual {
-                min-height: calc(100vh - 36px);
-            }
-
-
+            .signup-visual,
             .signup-panel {
                 min-height: calc(100vh - 36px);
-
-                padding: 42px 45px;
+                min-height: calc(100dvh - 36px);
             }
 
+            .visual-brand {
+                left: 34px;
+            }
 
-            .visual-brand,
             .visual-content {
-                left: 38px;
+                left: 34px;
+                right: 30px;
+                bottom: 90px;
+                max-width: 400px;
             }
 
+            .visual-content h1 {
+                font-size: clamp(34px, 3.5vw, 44px);
+            }
 
             .visual-footer {
-                left: 38px;
-                right: 38px;
+                left: 34px;
+                right: 24px;
+                gap: 8px;
+                letter-spacing: 1.2px;
             }
 
-        }
+            .signup-panel {
+                padding: 30px 35px;
+            }
 
+            .signup-heading {
+                margin-bottom: 20px;
+            }
+
+            .form-group {
+                margin-bottom: 10px;
+            }
+
+            .input-wrapper input {
+                height: 42px;
+            }
+
+            .signup-button {
+                min-height: 45px;
+            }
+
+            .login-text {
+                margin-top: 15px;
+            }
+        }
 
         /* =========================================
            TABLET
-           ========================================= */
+        ========================================= */
 
-        @media (max-width: 900px) {
-
+        @media (min-width: 601px) and (max-width: 900px) {
             .signup-page {
-                min-height: 100vh;
-
                 padding: 18px;
-
-                display: block;
+                display: flex;
+                flex-direction: column;
             }
-
 
             .signup-visual {
-                min-height: 390px;
-
-                border-radius: 20px 20px 0 0;
+                min-height: clamp(410px, 58vh, 540px);
+                min-height: clamp(410px, 58svh, 540px);
+                border-radius: 18px 18px 0 0;
             }
 
-
-            .signup-panel {
-                min-height: auto;
-
-                padding: 55px 45px;
-
-                border-radius: 0 0 20px 20px;
+            .visual-brand {
+                top: 30px;
+                left: 34px;
             }
-
 
             .visual-content {
-                bottom: 70px;
+                left: 34px;
+                right: 34px;
+                bottom: 55px;
+                max-width: 470px;
             }
-
 
             .visual-content h1 {
-                font-size: 45px;
+                font-size: clamp(38px, 5.3vw, 48px);
             }
-
 
             .visual-footer {
                 display: none;
             }
 
-        }
+            .signup-panel {
+                min-height: auto;
+                padding: 45px 35px;
+                border-radius: 0 0 18px 18px;
+            }
 
+            .signup-container {
+                max-width: 430px;
+            }
+
+            .signup-heading h2 {
+                font-size: 40px;
+            }
+        }
 
         /* =========================================
            MOBILE
-           ========================================= */
+        ========================================= */
 
         @media (max-width: 600px) {
-
             .signup-page {
                 padding: 0;
+                display: flex;
+                flex-direction: column;
             }
 
-
             .signup-visual {
-                min-height: 340px;
-
+                min-height: clamp(390px, 65svh, 500px);
                 border-radius: 0;
             }
 
-
             .visual-brand {
-                top: 30px;
-                left: 28px;
-
-                font-size: 23px;
+                top: 25px;
+                left: 22px;
+                font-size: 21px;
             }
-
 
             .brand-icon {
-                width: 31px;
-                height: 35px;
+                width: 28px;
+                height: 31px;
             }
-
 
             .visual-content {
-                left: 28px;
-                right: 28px;
-
-                bottom: 42px;
+                left: 22px;
+                right: 22px;
+                bottom: 28px;
+                max-width: 450px;
             }
-
 
             .visual-eyebrow {
-                margin-bottom: 14px;
-
-                font-size: 9px;
-
-                letter-spacing: 2.5px;
+                margin-bottom: 13px;
+                font-size: 8px;
+                letter-spacing: 2px;
             }
-
 
             .visual-content h1 {
-                font-size: 35px;
-
-                letter-spacing: -0.8px;
+                font-size: clamp(30px, 7.2vw, 41px);
+                line-height: 1.1;
+                letter-spacing: -0.6px;
+                text-wrap: pretty;
             }
-
 
             .visual-line {
-                margin: 19px 0 14px;
+                margin: 15px 0 12px;
             }
-
 
             .visual-caption {
                 font-size: 9px;
-
-                letter-spacing: 1.7px;
+                letter-spacing: 1.3px;
             }
 
+            .visual-footer {
+                display: none;
+            }
 
             .signup-panel {
-                padding: 45px 25px 50px;
-
+                min-height: auto;
+                padding: 38px 25px 45px;
                 border-radius: 0;
+                align-items: flex-start;
             }
 
+            .signup-container {
+                max-width: 430px;
+                margin: 0 auto;
+            }
 
             .signup-heading {
-                margin-bottom: 30px;
+                margin-bottom: 25px;
             }
-
-
-            .signup-eyebrow {
-                font-size: 9px;
-
-                letter-spacing: 3px;
-            }
-
 
             .signup-heading h2 {
-                font-size: 39px;
-
-                letter-spacing: -1px;
+                font-size: clamp(33px, 8vw, 41px);
+                line-height: 1.1;
             }
-
 
             .signup-description {
-                margin-top: 16px;
-
-                font-size: 13px;
+                font-size: 12px;
             }
-
 
             .input-wrapper input {
-                height: 55px;
+                height: 48px;
+                font-size: 12px;
             }
 
+            .form-group {
+                margin-bottom: 12px;
+            }
 
             .signup-button {
-                height: 58px;
+                min-height: 52px;
             }
 
+            .login-text {
+                font-size: 11px;
+            }
         }
 
-
         /* =========================================
-           SMALL MOBILE
-           ========================================= */
+           SMALL PHONES
+        ========================================= */
 
         @media (max-width: 400px) {
-
             .signup-visual {
-                min-height: 315px;
+                min-height: clamp(370px, 63svh, 440px);
             }
 
+            .visual-brand {
+                top: 22px;
+                left: 18px;
+                font-size: 19px;
+            }
+
+            .brand-icon {
+                width: 26px;
+                height: 29px;
+            }
+
+            .visual-content {
+                left: 18px;
+                right: 18px;
+                bottom: 24px;
+            }
+
+            .visual-eyebrow {
+                margin-bottom: 11px;
+                font-size: 7.5px;
+                letter-spacing: 1.5px;
+            }
 
             .visual-content h1 {
-                font-size: 31px;
+                font-size: clamp(28px, 7.5vw, 33px);
+                letter-spacing: -0.4px;
             }
 
+            .visual-line {
+                margin: 13px 0 10px;
+            }
+
+            .visual-caption {
+                font-size: 8px;
+                letter-spacing: 1px;
+            }
 
             .signup-panel {
-                padding-left: 20px;
-                padding-right: 20px;
+                padding: 32px 20px 40px;
             }
-
 
             .signup-heading h2 {
                 font-size: 34px;
             }
 
+            .signup-heading {
+                margin-bottom: 22px;
+            }
+
+            .form-group label {
+                font-size: 10px;
+            }
+
+            .input-wrapper input {
+                height: 46px;
+            }
         }
 
+        /* =========================================
+           SHORT DESKTOP VIEWPORTS
+        ========================================= */
+
+        @media (min-width: 901px) and (max-height: 760px) {
+            .signup-page {
+                min-height: 760px;
+            }
+
+            .signup-visual,
+            .signup-panel {
+                min-height: 722px;
+            }
+
+            .visual-brand {
+                top: 28px;
+            }
+
+            .visual-content {
+                bottom: 83px;
+            }
+
+            .visual-content h1 {
+                font-size: clamp(32px, 3vw, 42px);
+            }
+
+            .visual-eyebrow {
+                margin-bottom: 12px;
+            }
+
+            .visual-line {
+                margin: 15px 0 12px;
+            }
+
+            .visual-footer {
+                bottom: 20px;
+            }
+
+            .signup-panel {
+                padding-top: 25px;
+                padding-bottom: 25px;
+            }
+        }
     </style>
-
 </head>
-
 
 <body>
 
 <div class="signup-page">
 
-
-    <!-- =========================================
-         LEFT VISUAL
-         ========================================= -->
-
+    <!-- LEFT VISUAL PANEL -->
     <section class="signup-visual">
 
         <div class="visual-image"></div>
-
         <div class="visual-overlay"></div>
 
-
-        <!-- Brand -->
-
-        <a
-            href="{% url 'home' %}"
-            class="visual-brand"
-            aria-label="DwellDome home"
-        >
+        <!-- BRAND -->
+        <a href="{% url 'home' %}"
+           class="visual-brand"
+           aria-label="DwellDome home">
 
             <span class="brand-icon">
-
-                <svg
-                    viewBox="0 0 40 44"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
-                >
-
+                <svg viewBox="0 0 40 44"
+                     xmlns="http://www.w3.org/2000/svg"
+                     aria-hidden="true">
                     <path
                         d="M5 17.5L20 4L35 17.5V39H5V17.5Z"
                         fill="none"
@@ -910,7 +828,6 @@
                         stroke-width="2.2"
                         stroke-linejoin="round"
                     />
-
                     <text
                         x="20"
                         y="31"
@@ -918,22 +835,14 @@
                         font-family="Georgia, serif"
                         font-size="12"
                         font-weight="600"
-                        fill="currentColor"
-                    >
-                        DD
-                    </text>
-
+                        fill="currentColor">DD</text>
                 </svg>
-
             </span>
 
             <span>DwellDome</span>
-
         </a>
 
-
-        <!-- Main visual text -->
-
+        <!-- HERO TEXT -->
         <div class="visual-content">
 
             <p class="visual-eyebrow">
@@ -941,10 +850,7 @@
             </p>
 
             <h1>
-                A calmer way<br>
-                to care for<br>
-                everything under<br>
-                your roof.
+                A calmer way to care for everything under your roof.
             </h1>
 
             <div class="visual-line"></div>
@@ -956,46 +862,28 @@
 
         </div>
 
-
-        <!-- Bottom labels -->
-
+        <!-- FOOTER -->
         <div class="visual-footer">
-
             <span>HOMES</span>
-
             <i></i>
-
             <span>ASSETS</span>
-
             <i></i>
-
             <span>MEMORIES</span>
-
             <i></i>
-
             <span>PEACE OF MIND</span>
-
         </div>
 
     </section>
 
-
-    <!-- =========================================
-         RIGHT SIGNUP
-         ========================================= -->
-
+    <!-- RIGHT SIGNUP PANEL -->
     <section class="signup-panel">
 
         <div class="signup-container">
 
-
-            <!-- Heading -->
-
+            <!-- HEADING -->
             <div class="signup-heading">
 
-                <p class="signup-eyebrow">
-                    GET STARTED
-                </p>
+                <p class="signup-eyebrow">GET STARTED</p>
 
                 <h2>
                     Create your<br>
@@ -1009,535 +897,276 @@
 
             </div>
 
-
-            <!-- Form -->
-
-            <form
-                method="POST"
-                class="signup-form"
-            >
-
+            <!-- FORM -->
+            <form method="POST" class="signup-form">
                 {% csrf_token %}
 
-
-                <!-- Non-field errors -->
-
                 {% if form.non_field_errors %}
-
                     <div class="form-errors">
-
                         {% for error in form.non_field_errors %}
-
                             <p>{{ error }}</p>
-
                         {% endfor %}
-
                     </div>
-
                 {% endif %}
 
-
-                <!-- Username -->
-
+                <!-- USERNAME -->
                 <div class="form-group">
-
                     <label for="{{ form.username.id_for_label }}">
                         Username
                     </label>
 
                     <div class="input-wrapper">
-
                         <span class="input-icon">
-
-                            <svg
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                                aria-hidden="true"
-                            >
-
-                                <circle
-                                    cx="12"
-                                    cy="8"
-                                    r="3.5"
-                                    stroke="currentColor"
-                                    stroke-width="1.6"
-                                />
-
-                                <path
-                                    d="M5 20C5.8 16.6 8.1 14.5 12 14.5C15.9 14.5 18.2 16.6 19 20"
-                                    stroke="currentColor"
-                                    stroke-width="1.6"
-                                    stroke-linecap="round"
-                                />
-
+                            <svg viewBox="0 0 24 24"
+                                 fill="none"
+                                 xmlns="http://www.w3.org/2000/svg"
+                                 aria-hidden="true">
+                                <circle cx="12" cy="8" r="3.5"
+                                        stroke="currentColor"
+                                        stroke-width="1.6"/>
+                                <path d="M5 20C5.8 16.6 8.1 14.5 12 14.5C15.9 14.5 18.2 16.6 19 20"
+                                      stroke="currentColor"
+                                      stroke-width="1.6"
+                                      stroke-linecap="round"/>
                             </svg>
-
                         </span>
 
                         {{ form.username }}
-
                     </div>
 
-
                     {% if form.username.errors %}
-
                         <div class="field-error">
-
                             {% for error in form.username.errors %}
-
                                 <span>{{ error }}</span>
-
                             {% endfor %}
-
                         </div>
-
                     {% endif %}
-
                 </div>
 
-
-                <!-- Email -->
-
+                <!-- EMAIL -->
                 <div class="form-group">
-
                     <label for="{{ form.email.id_for_label }}">
                         Email address
                     </label>
 
                     <div class="input-wrapper">
-
                         <span class="input-icon">
-
-                            <svg
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                                aria-hidden="true"
-                            >
-
-                                <rect
-                                    x="3"
-                                    y="5"
-                                    width="18"
-                                    height="14"
-                                    rx="2"
-                                    stroke="currentColor"
-                                    stroke-width="1.6"
-                                />
-
-                                <path
-                                    d="M4 7L12 13L20 7"
-                                    stroke="currentColor"
-                                    stroke-width="1.6"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-
+                            <svg viewBox="0 0 24 24"
+                                 fill="none"
+                                 xmlns="http://www.w3.org/2000/svg"
+                                 aria-hidden="true">
+                                <rect x="3" y="5" width="18" height="14"
+                                      rx="2" stroke="currentColor"
+                                      stroke-width="1.6"/>
+                                <path d="M4 7L12 13L20 7"
+                                      stroke="currentColor"
+                                      stroke-width="1.6"
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"/>
                             </svg>
-
                         </span>
 
                         {{ form.email }}
-
                     </div>
 
-
                     {% if form.email.errors %}
-
                         <div class="field-error">
-
                             {% for error in form.email.errors %}
-
                                 <span>{{ error }}</span>
-
                             {% endfor %}
-
                         </div>
-
                     {% endif %}
-
                 </div>
 
-
-                <!-- Password -->
-
+                <!-- PASSWORD -->
                 <div class="form-group">
-
                     <label for="{{ form.password1.id_for_label }}">
                         Password
                     </label>
 
                     <div class="input-wrapper">
-
                         <span class="input-icon">
-
-                            <svg
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                                aria-hidden="true"
-                            >
-
-                                <rect
-                                    x="5"
-                                    y="10"
-                                    width="14"
-                                    height="10"
-                                    rx="2"
-                                    stroke="currentColor"
-                                    stroke-width="1.6"
-                                />
-
-                                <path
-                                    d="M8 10V7.5C8 5.29 9.79 3.5 12 3.5C14.21 3.5 16 5.29 16 7.5V10"
-                                    stroke="currentColor"
-                                    stroke-width="1.6"
-                                    stroke-linecap="round"
-                                />
-
+                            <svg viewBox="0 0 24 24"
+                                 fill="none"
+                                 xmlns="http://www.w3.org/2000/svg"
+                                 aria-hidden="true">
+                                <rect x="5" y="10" width="14" height="10"
+                                      rx="2" stroke="currentColor"
+                                      stroke-width="1.6"/>
+                                <path d="M8 10V7.5C8 5.29 9.79 3.5 12 3.5C14.21 3.5 16 5.29 16 7.5V10"
+                                      stroke="currentColor"
+                                      stroke-width="1.6"
+                                      stroke-linecap="round"/>
                             </svg>
-
                         </span>
-
 
                         {{ form.password1 }}
 
+                        <button type="button"
+                                class="password-toggle"
+                                id="passwordToggle1"
+                                aria-label="Show password">
 
-                        <button
-                            type="button"
-                            class="password-toggle"
-                            id="passwordToggle1"
-                            aria-label="Show password"
-                        >
-
-                            <svg
-                                id="eyeOpen1"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                                aria-hidden="true"
-                            >
-
-                                <path
-                                    d="M2.5 12C2.5 12 6 5.5 12 5.5C18 5.5 21.5 12 21.5 12C21.5 12 18 18.5 12 18.5C6 18.5 2.5 12 2.5 12Z"
-                                    stroke="currentColor"
-                                    stroke-width="1.6"
-                                />
-
-                                <circle
-                                    cx="12"
-                                    cy="12"
-                                    r="2.7"
-                                    stroke="currentColor"
-                                    stroke-width="1.6"
-                                />
-
+                            <svg id="eyeOpen1"
+                                 viewBox="0 0 24 24"
+                                 fill="none"
+                                 xmlns="http://www.w3.org/2000/svg"
+                                 aria-hidden="true">
+                                <path d="M2.5 12C2.5 12 6 5.5 12 5.5C18 5.5 21.5 12 21.5 12C21.5 12 18 18.5 12 18.5C6 18.5 2.5 12 2.5 12Z"
+                                      stroke="currentColor"
+                                      stroke-width="1.6"/>
+                                <circle cx="12" cy="12" r="2.7"
+                                        stroke="currentColor"
+                                        stroke-width="1.6"/>
                             </svg>
 
-
-                            <svg
-                                id="eyeClosed1"
-                                class="hidden"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                                aria-hidden="true"
-                            >
-
-                                <path
-                                    d="M3 3L21 21"
-                                    stroke="currentColor"
-                                    stroke-width="1.6"
-                                    stroke-linecap="round"
-                                />
-
-                                <path
-                                    d="M10.7 5.7C11.13 5.57 11.56 5.5 12 5.5C18 5.5 21.5 12 21.5 12C21.5 12 20.35 14.1 18.45 15.85"
-                                    stroke="currentColor"
-                                    stroke-width="1.6"
-                                    stroke-linecap="round"
-                                />
-
-                                <path
-                                    d="M6.1 7.1C3.72 8.85 2.5 12 2.5 12C2.5 12 6 18.5 12 18.5C13.4 18.5 14.65 18.1 15.75 17.55"
-                                    stroke="currentColor"
-                                    stroke-width="1.6"
-                                    stroke-linecap="round"
-                                />
-
+                            <svg id="eyeClosed1"
+                                 class="hidden"
+                                 viewBox="0 0 24 24"
+                                 fill="none"
+                                 xmlns="http://www.w3.org/2000/svg"
+                                 aria-hidden="true">
+                                <path d="M3 3L21 21"
+                                      stroke="currentColor"
+                                      stroke-width="1.6"
+                                      stroke-linecap="round"/>
+                                <path d="M10.7 5.7C11.13 5.57 11.56 5.5 12 5.5C18 5.5 21.5 12 21.5 12C21.5 12 20.35 14.1 18.45 15.85"
+                                      stroke="currentColor"
+                                      stroke-width="1.6"
+                                      stroke-linecap="round"/>
+                                <path d="M6.1 7.1C3.72 8.85 2.5 12 2.5 12C2.5 12 6 18.5 12 18.5C13.4 18.5 14.65 18.1 15.75 17.55"
+                                      stroke="currentColor"
+                                      stroke-width="1.6"
+                                      stroke-linecap="round"/>
                             </svg>
-
                         </button>
-
                     </div>
 
-
                     {% if form.password1.errors %}
-
                         <div class="field-error">
-
                             {% for error in form.password1.errors %}
-
                                 <span>{{ error }}</span>
-
                             {% endfor %}
-
                         </div>
-
                     {% endif %}
-
                 </div>
 
-
-                <!-- Confirm Password -->
-
+                <!-- CONFIRM PASSWORD -->
                 <div class="form-group">
-
                     <label for="{{ form.password2.id_for_label }}">
                         Confirm password
                     </label>
 
                     <div class="input-wrapper">
-
                         <span class="input-icon">
-
-                            <svg
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                                aria-hidden="true"
-                            >
-
-                                <rect
-                                    x="5"
-                                    y="10"
-                                    width="14"
-                                    height="10"
-                                    rx="2"
-                                    stroke="currentColor"
-                                    stroke-width="1.6"
-                                />
-
-                                <path
-                                    d="M8 10V7.5C8 5.29 9.79 3.5 12 3.5C14.21 3.5 16 5.29 16 7.5V10"
-                                    stroke="currentColor"
-                                    stroke-width="1.6"
-                                    stroke-linecap="round"
-                                />
-
+                            <svg viewBox="0 0 24 24"
+                                 fill="none"
+                                 xmlns="http://www.w3.org/2000/svg"
+                                 aria-hidden="true">
+                                <rect x="5" y="10" width="14" height="10"
+                                      rx="2" stroke="currentColor"
+                                      stroke-width="1.6"/>
+                                <path d="M8 10V7.5C8 5.29 9.79 3.5 12 3.5C14.21 3.5 16 5.29 16 7.5V10"
+                                      stroke="currentColor"
+                                      stroke-width="1.6"
+                                      stroke-linecap="round"/>
                             </svg>
-
                         </span>
-
 
                         {{ form.password2 }}
 
+                        <button type="button"
+                                class="password-toggle"
+                                id="passwordToggle2"
+                                aria-label="Show password">
 
-                        <button
-                            type="button"
-                            class="password-toggle"
-                            id="passwordToggle2"
-                            aria-label="Show password"
-                        >
-
-                            <svg
-                                id="eyeOpen2"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                                aria-hidden="true"
-                            >
-
-                                <path
-                                    d="M2.5 12C2.5 12 6 5.5 12 5.5C18 5.5 21.5 12 21.5 12C21.5 12 18 18.5 12 18.5C6 18.5 2.5 12 2.5 12Z"
-                                    stroke="currentColor"
-                                    stroke-width="1.6"
-                                />
-
-                                <circle
-                                    cx="12"
-                                    cy="12"
-                                    r="2.7"
-                                    stroke="currentColor"
-                                    stroke-width="1.6"
-                                />
-
+                            <svg id="eyeOpen2"
+                                 viewBox="0 0 24 24"
+                                 fill="none"
+                                 xmlns="http://www.w3.org/2000/svg"
+                                 aria-hidden="true">
+                                <path d="M2.5 12C2.5 12 6 5.5 12 5.5C18 5.5 21.5 12 21.5 12C21.5 12 18 18.5 12 18.5C6 18.5 2.5 12 2.5 12Z"
+                                      stroke="currentColor"
+                                      stroke-width="1.6"/>
+                                <circle cx="12" cy="12" r="2.7"
+                                        stroke="currentColor"
+                                        stroke-width="1.6"/>
                             </svg>
 
-
-                            <svg
-                                id="eyeClosed2"
-                                class="hidden"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                                aria-hidden="true"
-                            >
-
-                                <path
-                                    d="M3 3L21 21"
-                                    stroke="currentColor"
-                                    stroke-width="1.6"
-                                    stroke-linecap="round"
-                                />
-
-                                <path
-                                    d="M10.7 5.7C11.13 5.57 11.56 5.5 12 5.5C18 5.5 21.5 12 21.5 12C21.5 12 20.35 14.1 18.45 15.85"
-                                    stroke="currentColor"
-                                    stroke-width="1.6"
-                                    stroke-linecap="round"
-                                />
-
-                                <path
-                                    d="M6.1 7.1C3.72 8.85 2.5 12 2.5 12C2.5 12 6 18.5 12 18.5C13.4 18.5 14.65 18.1 15.75 17.55"
-                                    stroke="currentColor"
-                                    stroke-width="1.6"
-                                    stroke-linecap="round"
-                                />
-
+                            <svg id="eyeClosed2"
+                                 class="hidden"
+                                 viewBox="0 0 24 24"
+                                 fill="none"
+                                 xmlns="http://www.w3.org/2000/svg"
+                                 aria-hidden="true">
+                                <path d="M3 3L21 21"
+                                      stroke="currentColor"
+                                      stroke-width="1.6"
+                                      stroke-linecap="round"/>
+                                <path d="M10.7 5.7C11.13 5.57 11.56 5.5 12 5.5C18 5.5 21.5 12 21.5 12C21.5 12 20.35 14.1 18.45 15.85"
+                                      stroke="currentColor"
+                                      stroke-width="1.6"
+                                      stroke-linecap="round"/>
+                                <path d="M6.1 7.1C3.72 8.85 2.5 12 2.5 12C2.5 12 6 18.5 12 18.5C13.4 18.5 14.65 18.1 15.75 17.55"
+                                      stroke="currentColor"
+                                      stroke-width="1.6"
+                                      stroke-linecap="round"/>
                             </svg>
-
                         </button>
-
                     </div>
 
-
                     {% if form.password2.errors %}
-
                         <div class="field-error">
-
                             {% for error in form.password2.errors %}
-
                                 <span>{{ error }}</span>
-
                             {% endfor %}
-
                         </div>
-
                     {% endif %}
-
                 </div>
 
-
-                <!-- Create Account -->
-
-                <button
-                    type="submit"
-                    class="signup-button"
-                >
-
+                <!-- CREATE ACCOUNT -->
+                <button type="submit" class="signup-button">
                     <span>Create account</span>
-
-                    <span class="button-arrow">
-                        →
-                    </span>
-
+                    <span class="button-arrow" aria-hidden="true">→</span>
                 </button>
 
-
-                <!-- Login -->
-
+                <!-- LOGIN LINK -->
                 <p class="login-text">
-
                     Already have an account?
-
-                    <a href="{% url 'login' %}">
-                        Sign in
-                    </a>
-
+                    <a href="{% url 'login' %}">Sign in</a>
                 </p>
 
             </form>
-
         </div>
 
     </section>
 
 </div>
 
-
 <script>
+    function setupPasswordToggle(inputId, toggleId, openId, closedId) {
+        const passwordInput = document.getElementById(inputId);
+        const passwordToggle = document.getElementById(toggleId);
+        const eyeOpen = document.getElementById(openId);
+        const eyeClosed = document.getElementById(closedId);
 
-    /* =========================================
-       PASSWORD TOGGLE HELPER
-       ========================================= */
-
-    function setupPasswordToggle(
-        inputId,
-        toggleId,
-        openId,
-        closedId
-    ) {
-
-        const passwordInput =
-            document.getElementById(inputId);
-
-        const passwordToggle =
-            document.getElementById(toggleId);
-
-        const eyeOpen =
-            document.getElementById(openId);
-
-        const eyeClosed =
-            document.getElementById(closedId);
-
-
-        if (
-            !passwordInput ||
-            !passwordToggle ||
-            !eyeOpen ||
-            !eyeClosed
-        ) {
+        if (!passwordInput || !passwordToggle || !eyeOpen || !eyeClosed) {
             return;
         }
 
+        passwordToggle.addEventListener("click", function () {
+            const showPassword = passwordInput.type === "password";
 
-        passwordToggle.addEventListener(
-            "click",
-            function () {
+            passwordInput.type = showPassword ? "text" : "password";
+            eyeOpen.classList.toggle("hidden", showPassword);
+            eyeClosed.classList.toggle("hidden", !showPassword);
 
-                const isPassword =
-                    passwordInput.type === "password";
-
-
-                if (isPassword) {
-
-                    passwordInput.type = "text";
-
-                    eyeOpen.classList.add("hidden");
-
-                    eyeClosed.classList.remove("hidden");
-
-                    passwordToggle.setAttribute(
-                        "aria-label",
-                        "Hide password"
-                    );
-
-                } else {
-
-                    passwordInput.type = "password";
-
-                    eyeClosed.classList.add("hidden");
-
-                    eyeOpen.classList.remove("hidden");
-
-                    passwordToggle.setAttribute(
-                        "aria-label",
-                        "Show password"
-                    );
-
-                }
-
-            }
-        );
-
+            passwordToggle.setAttribute(
+                "aria-label",
+                showPassword ? "Hide password" : "Show password"
+            );
+        });
     }
-
-
-    /* =========================================
-       PASSWORD 1
-       ========================================= */
 
     setupPasswordToggle(
         "id_password1",
@@ -1546,20 +1175,13 @@
         "eyeClosed1"
     );
 
-
-    /* =========================================
-       PASSWORD 2
-       ========================================= */
-
     setupPasswordToggle(
         "id_password2",
         "passwordToggle2",
         "eyeOpen2",
         "eyeClosed2"
     );
-
 </script>
 
 </body>
-
 </html>
