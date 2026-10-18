@@ -598,7 +598,10 @@ button, input { font-family: inherit; }
     .home-card { width: 72%; left: 14%; }
 }
 
-/* PHONE: 381px–600px */
+/* PHONE: 600px AND BELOW
+   Stack the hero content and illustration vertically so they
+   do not overlap on narrow screens.
+*/
 
 @media (max-width: 600px) {
     .navbar {
@@ -633,34 +636,100 @@ button, input { font-family: inherit; }
 
     .nav-button { padding-left: 8px; padding-right: 8px; }
 
-    .hero-content { min-height: 600px; padding: 48px 24px; }
+    /* Main mobile layout fix */
+    .hero {
+        height: auto;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        overflow: visible;
+    }
+
+    .hero-content {
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        padding: 42px 24px 36px;
+    }
+
     .eyebrow { font-size: 8px; letter-spacing: 2px; }
-    .hero h1 { font-size: 42px; letter-spacing: -2px; line-height: 1; }
-    .hero-description { margin-top: 20px; font-size: 13px; line-height: 1.6; }
-    .primary-button { width: 100%; max-width: 310px; height: 54px; }
-    .hero-note { font-size: 11px; }
 
-    .mini-features { width: 100%; gap: 5px; }
-    .mini-feature { min-width: 0; flex: 1; gap: 6px; }
-    .mini-icon { width: 27px; height: 27px; }
+    .hero h1 {
+        max-width: 100%;
+        font-size: clamp(38px, 10vw, 48px);
+        letter-spacing: -1.8px;
+        line-height: 1.02;
+        overflow-wrap: normal;
+    }
+
+    .hero-description {
+        max-width: 100%;
+        margin-top: 18px;
+        font-size: 13px;
+        line-height: 1.65;
+    }
+
+    .primary-button {
+        width: 100%;
+        max-width: 310px;
+        height: 50px;
+        flex-shrink: 0;
+    }
+
+    .hero-note {
+        align-items: flex-start;
+        line-height: 1.5;
+    }
+
+    .mini-features {
+        width: 100%;
+        max-width: 100%;
+        gap: 5px;
+        flex-wrap: nowrap;
+    }
+
+    .mini-feature {
+        min-width: 0;
+        flex: 1;
+        gap: 5px;
+    }
+
+    .mini-icon { width: 25px; height: 25px; }
+
     .mini-feature div { font-size: 8px; }
-    .feature-divider { margin: 0 5px; }
 
-    .hero-visual { height: 570px; min-height: 570px; }
-    .home-card { width: 88%; left: 6%; padding: 16px; }
+    .feature-divider {
+        flex-shrink: 0;
+        margin: 0 3px;
+    }
+
+    .hero-visual {
+        width: 100%;
+        height: 480px;
+        min-height: 480px;
+    }
+
+    .home-card {
+        width: 88%;
+        max-width: 420px;
+        left: 6%;
+        padding: 16px;
+    }
+
     .home-card-header { margin-bottom: 13px; }
     .home-card-header h2 { font-size: 19px; }
     .home-card-header p { font-size: 7px; }
-    .rooms-grid { height: 205px; gap: 5px; }
+    .rooms-grid { height: 190px; gap: 5px; }
     .room-label { font-size: 13px; }
     .room-number { font-size: 7px; }
     .home-stats { margin-top: 12px; padding-top: 11px; }
-    .home-stats div { padding-left: 9px; }
+    .home-stats div { padding-left: 8px; }
     .home-stats span { font-size: 5px; letter-spacing: .8px; }
-    .home-stats strong { font-size: 17px; }
+    .home-stats strong { font-size: 16px; }
 
     .arch { width: 360px; height: 520px; right: -20%; }
     .wood-wall { width: 13%; }
+
     .plant-one {
         transform: scale(.75);
         transform-origin: bottom right;
@@ -680,8 +749,11 @@ button, input { font-family: inherit; }
     .nav-actions { gap: 3px; }
     .signup, .nav-button { padding: 7px 5px; font-size: 8px; }
 
-    .hero-content { min-height: 570px; padding: 42px 20px; }
-    .hero h1 { font-size: 38px; }
+    .hero-content { min-height: 0; padding: 36px 20px 30px; }
+    .hero h1 {
+        font-size: clamp(34px, 9.5vw, 38px);
+        letter-spacing: -1.5px;
+    }
     .hero-description { font-size: 12px; }
     .mini-feature div { font-size: 7px; }
     .hero-visual { height: 510px; min-height: 510px; }
