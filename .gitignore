@@ -3,59 +3,28 @@ __pycache__/
 *.py[cod]
 *.pyo
 
-# Virtual environment
+# Virtual environments
 venv/
 env/
 .venv/
 
-# Environment variables and secrets
+# Secrets
 .env
 .env.*
 !.env.example
 
-# Local database
+# Local database and backup
 db.sqlite3
 db.sqlite3-journal
+db_backup_before_mysql.sqlite3
+local_data_backup.json
 
-# Django generated files
+# Generated files
 staticfiles/
 media/
 
-# Editor and OS files
+# Editors and operating system
 .vscode/
 .idea/
 .DS_Store
 Thumbs.db
-
-
-
-# Environment secrets
-.env
-.env.*
-
-# Virtual environment
-venv/
-env/
-.venv/
-
-# Python cache
-__pycache__/
-*.py[cod]
-*.pyo
-
-# Local database
-db.sqlite3
-
-# User-uploaded media
-media/
-
-# IDE
-.vscode/
-
-
-.env
-venv/
-__pycache__/
-*.py[cod]
-db.sqlite3
-media/
